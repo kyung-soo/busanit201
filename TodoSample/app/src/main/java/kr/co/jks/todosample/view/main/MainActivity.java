@@ -1,4 +1,4 @@
-package kr.co.jks.todosample;
+package kr.co.jks.todosample.view.main;
 
 import android.os.Bundle;
 
@@ -8,11 +8,30 @@ import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
+import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
+import kr.co.jks.todosample.R;
+import kr.co.jks.todosample.model.User;
+
+public class MainActivity extends AppCompatActivity implements MainContract.View {
+
+    @BindView(R.id.txtId)
+    EditText etTitle;
+    @BindView(R.id.txtPw)
+    EditText etPwd;
+
+    static final String _TAG = "ttt";
+
+    MainContract.Presenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,15 +39,21 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        ButterKnife.bind(this);
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        presenter = new MainPresenter();
+        presenter.setView(this);
+    }
+
+    @OnClick(R.id.btnLogin)
+    public void save() {
+        Log.d(_TAG, "title : " + etTitle.getText() + ", pwd : " + etPwd.getText());
+        String id = etTitle.getText().toString();
+        String pwd = etPwd.getText().toString();
+        User user = new User();
+        user.setId(id);
+        user.setPwd(pwd);
+        presenter.loginProc(user);
     }
 
     @Override
@@ -52,4 +77,15 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    public void loginDone() {
+        Toast.makeText(this, " Ok! 여기까지 호출 됨 ", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
 }
