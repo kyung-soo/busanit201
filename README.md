@@ -10,7 +10,7 @@
 - [ ] Detail
 
 
----------------------
+
 git 참고
 ---------------------
 git add .
@@ -23,3 +23,4 @@ git status
 git pull origin
 or
 git fetch origin
+
