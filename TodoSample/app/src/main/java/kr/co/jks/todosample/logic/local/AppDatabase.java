@@ -7,7 +7,7 @@ import kr.co.jks.todosample.model.Item;
 import kr.co.jks.todosample.model.User;
 
 @Database(entities = {Item.class, User.class},
-        version = 1)
+        version = 2)
 public abstract class AppDatabase extends RoomDatabase {
     public abstract ItemDao getItemDao();
     public abstract UserDao getUserDao();
