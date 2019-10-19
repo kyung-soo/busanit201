@@ -3,6 +3,6 @@ content-type: application/json
 
 {
     "id":"test",
-    "password":"12312"
+    "password":"1234"
 }
 //GET http://33a25912.ngrok.io/users/
