@@ -1,13 +1,16 @@
 package kr.co.jks.todosample.logic;
 
+import io.reactivex.Single;
 import kr.co.jks.todosample.logic.local.LocalDataSourceImpl;
 import kr.co.jks.todosample.logic.remote.RemoteDataSourceImpl;
 import kr.co.jks.todosample.model.User;
 import kr.co.jks.todosample.view.main.MainContract;
+import kr.co.jks.todosample.view.signup.SignUpContract;
 
 public class UserRepositoryImpl implements UserRepository {
 
     MainContract.Presenter presenter;
+    SignUpContract.Presenter signPresenter;
     DataSource localDataSource;
     DataSource remoteDataSource;
 
@@ -26,13 +29,22 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
+    public void setSignUpPresenter(SignUpContract.Presenter presenter) {
+        this.signPresenter = presenter;
+        localDataSource = new LocalDataSourceImpl();
+        localDataSource.setUserRepository(this);
+        remoteDataSource = new RemoteDataSourceImpl();
+        remoteDataSource.setUserRepository(this);
+    }
+
+    @Override
     public void loginDone() {
         this.presenter.loginDone();
     }
 
     @Override
-    public void signUpProc(User user) {
-        localDataSource.signUp(user);
+    public Single<Long> signUpProc(User user) {
+        return localDataSource.signUp(user);
     }
 
     @Override

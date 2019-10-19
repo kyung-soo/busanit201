@@ -37,4 +37,14 @@ public class MainPresenter
     public void loginDone() {
         view.loginDone();
     }
+
+    @Override
+    public void signUpProc(User user) {
+
+    }
+
+    @Override
+    public void signUpDone() {
+
+    }
 }
