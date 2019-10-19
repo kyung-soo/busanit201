@@ -1,0 +1,8 @@
+POST http://33a25912.ngrok.io/users/auth
+content-type: application/json
+
+{
+    "id":"test",
+    "password":"12312"
+}
+//GET http://33a25912.ngrok.io/users/
