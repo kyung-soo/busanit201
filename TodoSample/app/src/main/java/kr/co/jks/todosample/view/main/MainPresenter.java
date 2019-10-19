@@ -1,5 +1,6 @@
 package kr.co.jks.todosample.view.main;
 
+import io.reactivex.Single;
 import kr.co.jks.todosample.logic.UserRepository;
 import kr.co.jks.todosample.logic.UserRepositoryImpl;
 import kr.co.jks.todosample.base.BasePresenterImpl;
@@ -26,7 +27,6 @@ public class MainPresenter
 
 
     @Override
-
     public void loginProc(User user) {
         repository.loginProc(user);
     }
