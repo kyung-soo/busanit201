@@ -24,8 +24,9 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public void loginProc(User user) {
-        localDataSource.checkUser(user.getId(), user.getPwd());
+    public Single<User> loginProc(User user) {
+        return remoteDataSource.checkUser(user.getId(), user.getPwd());
+//        return localDataSource.checkUser(user.getId(), user.getPwd());
     }
 
     @Override

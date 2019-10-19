@@ -22,6 +22,7 @@ import butterknife.OnClick;
 
 import kr.co.jks.todosample.R;
 import kr.co.jks.todosample.model.User;
+import kr.co.jks.todosample.view.signup.SignUpActivity;
 import kr.co.jks.todosample.view.todolist.TodoListActivity;
 
 public class MainActivity extends AppCompatActivity implements MainContract.View {
@@ -56,6 +57,12 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         user.setId(id);
         user.setPwd(pwd);
         presenter.loginProc(user);
+    }
+
+    @OnClick(R.id.btnSignUp)
+    public void singup() {
+        Intent intent = new Intent(this, SignUpActivity.class);
+        startActivity(intent);
     }
 
     @Override

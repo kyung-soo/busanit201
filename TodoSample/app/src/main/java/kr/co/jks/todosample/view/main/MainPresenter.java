@@ -12,12 +12,12 @@ public class MainPresenter
 
     MainContract.View view;
 
-    UserRepository repository = new UserRepositoryImpl();
+    UserRepository userRepository = new UserRepositoryImpl();
 
     @Override
     public void setView(MainContract.View view) {
         this.view = view;
-        repository.setPresenter(this);
+        userRepository.setPresenter(this);
     }
 
     @Override
@@ -28,7 +28,7 @@ public class MainPresenter
 
     @Override
     public void loginProc(User user) {
-        repository.loginProc(user);
+        userRepository.loginProc(user);
     }
 
 

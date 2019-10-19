@@ -5,7 +5,6 @@ import androidx.room.PrimaryKey;
 
 @Entity(tableName = "user")
 public class User {
-
     @PrimaryKey(autoGenerate = true)
     private int no;
     private String id;  //email type
