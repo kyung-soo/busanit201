@@ -1,5 +1,6 @@
 package kr.co.jks.todosample.view.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -21,6 +22,7 @@ import butterknife.OnClick;
 
 import kr.co.jks.todosample.R;
 import kr.co.jks.todosample.model.User;
+import kr.co.jks.todosample.view.todolist.TodoListActivity;
 
 public class MainActivity extends AppCompatActivity implements MainContract.View {
 
@@ -46,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     }
 
     @OnClick(R.id.btnLogin)
-    public void save() {
+    public void login() {
         Log.d(_TAG, "title : " + etTitle.getText() + ", pwd : " + etPwd.getText());
         String id = etTitle.getText().toString();
         String pwd = etPwd.getText().toString();
@@ -80,7 +82,13 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
     @Override
     public void loginDone() {
-        Toast.makeText(this, " Ok! 여기까지 호출 됨 ", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, " 디테일로 전환 ", Toast.LENGTH_SHORT).show();
+        showDetail();
+    }
+
+    public void showDetail() {
+        Intent intent = new Intent(this, TodoListActivity.class);
+        startActivity(intent);
     }
 
     @Override
