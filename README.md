@@ -8,3 +8,18 @@
 - [ ] List
 - [ ] Write
 - [ ] Detail
+
+
+---------------------
+git 참고
+---------------------
+git add .
+git commit -m "add"
+git push origin master
+
+git status
+---------------------
+
+git pull origin
+or
+git fetch origin
